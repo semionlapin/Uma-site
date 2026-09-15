@@ -921,6 +921,177 @@ export const KitchenSink: React.FC = () => {
               </div>
             </div>
 
+            {/* Matrix 4: Negative Variant (Dark Canvas Container) */}
+            <div className="bg-surface-accent-1-tertiary p-6 md:p-8 rounded-card border border-border-neutral space-y-8 shadow-xs text-text-inverse">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-border-inverse pb-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block size-2.5 rounded-full bg-surface-brand"></span>
+                    <h3 className="text-h3 text-text-inverse">Negative Variant (Dark Surface)</h3>
+                  </div>
+                  <p className="text-body-p3 text-text-inverse-secondary mt-1">
+                    Figma token mapping for dark backgrounds using <code className="text-xs bg-white/10 text-white px-1.5 py-0.5 rounded font-mono">negative=&#123;true&#125;</code>.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/10 text-text-inverse w-fit">
+                  Dark Mode / Negative
+                </span>
+              </div>
+
+              {/* Negative Variant x Size Matrix */}
+              <div className="space-y-4">
+                <h4 className="text-h4 text-text-inverse">1. Negative: Variant × Size Matrix</h4>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-border-inverse text-xs font-semibold text-text-inverse-secondary uppercase tracking-wider">
+                        <th className="py-3 px-4">Variant (Negative)</th>
+                        <th className="py-3 px-4">Size: LG (56px)</th>
+                        <th className="py-3 px-4">Size: MD (48px)</th>
+                        <th className="py-3 px-4">Size: SM (36px)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border-inverse text-sm">
+                      {/* Primary Negative */}
+                      <tr>
+                        <td className="py-4 px-4 font-semibold text-text-inverse">
+                          Primary
+                          <span className="block text-[11px] font-normal text-text-inverse-secondary">
+                            bg-surface-brand
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="primary" negative size="lg">Button</Button>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="primary" negative size="md">Button</Button>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="primary" negative size="sm">Button</Button>
+                        </td>
+                      </tr>
+
+                      {/* Neutral Negative */}
+                      <tr>
+                        <td className="py-4 px-4 font-semibold text-text-inverse">
+                          Neutral
+                          <span className="block text-[11px] font-normal text-text-inverse-secondary">
+                            bg-surface-neutral (white fill)
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="neutral" negative size="lg">Button</Button>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="neutral" negative size="md">Button</Button>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="neutral" negative size="sm">Button</Button>
+                        </td>
+                      </tr>
+
+                      {/* Subtle Negative */}
+                      <tr>
+                        <td className="py-4 px-4 font-semibold text-text-inverse">
+                          Subtle
+                          <span className="block text-[11px] font-normal text-text-inverse-secondary">
+                            border-border-neutral
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="subtle" negative size="lg">Button</Button>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="subtle" negative size="md">Button</Button>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Button variant="subtle" negative size="sm">Button</Button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Negative Icon Slot Configurations */}
+              <div className="space-y-4 pt-4 border-t border-border-inverse">
+                <h4 className="text-h4 text-text-inverse">2. Negative: Icon Slot Variations</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Leading Icon */}
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-4">
+                    <span className="text-xs font-semibold text-text-inverse-secondary uppercase tracking-wider block">
+                      Leading Icon
+                    </span>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button variant="primary" negative size="lg" leadingIcon={Sparkles}>Создать игру</Button>
+                      <Button variant="neutral" negative size="md" leadingIcon={Play}>Играть</Button>
+                      <Button variant="subtle" negative size="sm" leadingIcon={Plus}>Добавить</Button>
+                    </div>
+                  </div>
+
+                  {/* Trailing Icon */}
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-4">
+                    <span className="text-xs font-semibold text-text-inverse-secondary uppercase tracking-wider block">
+                      Trailing Icon
+                    </span>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button variant="primary" negative size="lg" trailingIcon={ArrowRight}>Далее</Button>
+                      <Button variant="neutral" negative size="md" trailingIcon={ArrowRight}>Каталог</Button>
+                      <Button variant="subtle" negative size="sm" trailingIcon={ArrowRight}>Подробнее</Button>
+                    </div>
+                  </div>
+
+                  {/* Both Icons */}
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-4">
+                    <span className="text-xs font-semibold text-text-inverse-secondary uppercase tracking-wider block">
+                      Both Icons
+                    </span>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button variant="primary" negative size="lg" leadingIcon={Sparkles} trailingIcon={ArrowRight}>
+                        Старт
+                      </Button>
+                      <Button variant="neutral" negative size="md" leadingIcon={Check} trailingIcon={ArrowRight}>
+                        Готово
+                      </Button>
+                      <Button variant="subtle" negative size="sm" leadingIcon={Plus} trailingIcon={ArrowRight}>
+                        Создать
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Negative Interactive & Disabled States */}
+              <div className="space-y-4 pt-4 border-t border-border-inverse">
+                <h4 className="text-h4 text-text-inverse">3. Negative: Interactive & Disabled States</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-3">
+                    <span className="text-xs font-semibold text-text-inverse">Primary (Negative)</span>
+                    <div className="flex flex-col gap-3">
+                      <Button variant="primary" negative size="md" leadingIcon={Sparkles}>Active Primary</Button>
+                      <Button variant="primary" negative size="md" leadingIcon={Sparkles} disabled>Disabled Primary</Button>
+                    </div>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-3">
+                    <span className="text-xs font-semibold text-text-inverse">Neutral (Negative)</span>
+                    <div className="flex flex-col gap-3">
+                      <Button variant="neutral" negative size="md" leadingIcon={Play}>Active Neutral</Button>
+                      <Button variant="neutral" negative size="md" leadingIcon={Play} disabled>Disabled Neutral</Button>
+                    </div>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-3">
+                    <span className="text-xs font-semibold text-text-inverse">Subtle (Negative)</span>
+                    <div className="flex flex-col gap-3">
+                      <Button variant="subtle" negative size="md" leadingIcon={Plus}>Active Subtle</Button>
+                      <Button variant="subtle" negative size="md" leadingIcon={Plus} disabled>Disabled Subtle</Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* DIVIDER BETWEEN BUTTON AND ICONBUTTON */}
             <div className="pt-8 border-t border-border-neutral-subtle">
               <h2 className="text-h2 text-text-neutral">IconButton Component (`IconButton.tsx`)</h2>
@@ -1088,6 +1259,177 @@ export const KitchenSink: React.FC = () => {
                     <div className="text-center space-y-1">
                       <IconButton variant="subtle" size="md" icon={X} disabled aria-label="Close disabled" />
                       <span className="text-[10px] text-text-neutral-secondary block font-mono">Disabled</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* IconButton Matrix 3: Negative Variant (Dark Canvas Container) */}
+            <div className="bg-surface-accent-1-tertiary p-6 md:p-8 rounded-card border border-border-neutral space-y-8 shadow-xs text-text-inverse">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-border-inverse pb-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block size-2.5 rounded-full bg-surface-brand"></span>
+                    <h3 className="text-h3 text-text-inverse">IconButton: Negative Variant (Dark Surface)</h3>
+                  </div>
+                  <p className="text-body-p3 text-text-inverse-secondary mt-1">
+                    1:1 circular action buttons for dark background surfaces with <code className="text-xs bg-white/10 text-white px-1.5 py-0.5 rounded font-mono">negative=&#123;true&#125;</code>.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/10 text-text-inverse w-fit">
+                  Dark Mode / Negative
+                </span>
+              </div>
+
+              {/* Negative Variant x Size Matrix */}
+              <div className="space-y-4">
+                <h4 className="text-h4 text-text-inverse">1. Negative: Variant × Size Matrix</h4>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-border-inverse text-xs font-semibold text-text-inverse-secondary uppercase tracking-wider">
+                        <th className="py-3 px-4">Variant</th>
+                        <th className="py-3 px-4">Size: LG (56px)</th>
+                        <th className="py-3 px-4">Size: MD (48px)</th>
+                        <th className="py-3 px-4">Size: SM (36px)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border-inverse text-sm">
+                      {/* Primary Negative */}
+                      <tr>
+                        <td className="py-4 px-4 font-semibold text-text-inverse">
+                          Primary
+                          <span className="block text-[11px] font-normal text-text-inverse-secondary">
+                            bg-surface-brand
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="primary" negative size="lg" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="primary" negative size="lg" icon={Sparkles} aria-label="Sparkle action" />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="primary" negative size="md" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="primary" negative size="md" icon={ArrowRight} aria-label="Next action" />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="primary" negative size="sm" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="primary" negative size="sm" icon={Check} aria-label="Confirm action" />
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Neutral Negative */}
+                      <tr>
+                        <td className="py-4 px-4 font-semibold text-text-inverse">
+                          Neutral
+                          <span className="block text-[11px] font-normal text-text-inverse-secondary">
+                            bg-surface-neutral (white)
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="neutral" negative size="lg" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="neutral" negative size="lg" icon={Settings} aria-label="Settings" />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="neutral" negative size="md" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="neutral" negative size="md" icon={Play} aria-label="Play video" />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="neutral" negative size="sm" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="neutral" negative size="sm" icon={Search} aria-label="Search" />
+                          </div>
+                        </td>
+                      </tr>
+
+                      {/* Subtle Negative */}
+                      <tr>
+                        <td className="py-4 px-4 font-semibold text-text-inverse">
+                          Subtle
+                          <span className="block text-[11px] font-normal text-text-inverse-secondary">
+                            text-text-inverse
+                          </span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="subtle" negative size="lg" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="subtle" negative size="lg" icon={X} aria-label="Close modal" />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="subtle" negative size="md" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="subtle" negative size="md" icon={Heart} aria-label="Favorite item" />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-3">
+                            <IconButton variant="subtle" negative size="sm" icon={Plus} aria-label="Add item" />
+                            <IconButton variant="subtle" negative size="sm" icon={Share2} aria-label="Share page" />
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Negative Interactive & Disabled States */}
+              <div className="space-y-4 pt-4 border-t border-border-inverse">
+                <h4 className="text-h4 text-text-inverse">2. Negative: Interactive & Disabled States</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                  {/* Primary Negative */}
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-4">
+                    <span className="text-xs font-semibold text-text-inverse">Primary (Negative)</span>
+                    <div className="flex items-center justify-around p-3 bg-white/5 rounded-xl border border-white/10">
+                      <div className="text-center space-y-1">
+                        <IconButton variant="primary" negative size="md" icon={Plus} aria-label="Add item" />
+                        <span className="text-[10px] text-text-inverse-secondary block font-mono">Default</span>
+                      </div>
+                      <div className="text-center space-y-1">
+                        <IconButton variant="primary" negative size="md" icon={Plus} disabled aria-label="Add item disabled" />
+                        <span className="text-[10px] text-text-inverse-secondary block font-mono">Disabled</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Neutral Negative */}
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-4">
+                    <span className="text-xs font-semibold text-text-inverse">Neutral (Negative)</span>
+                    <div className="flex items-center justify-around p-3 bg-white/5 rounded-xl border border-white/10">
+                      <div className="text-center space-y-1">
+                        <IconButton variant="neutral" negative size="md" icon={Settings} aria-label="Settings" />
+                        <span className="text-[10px] text-text-inverse-secondary block font-mono">Default</span>
+                      </div>
+                      <div className="text-center space-y-1">
+                        <IconButton variant="neutral" negative size="md" icon={Settings} disabled aria-label="Settings disabled" />
+                        <span className="text-[10px] text-text-inverse-secondary block font-mono">Disabled</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Subtle Negative */}
+                  <div className="p-5 rounded-2xl bg-surface-accent-1-tertiary-hover border border-border-inverse space-y-4">
+                    <span className="text-xs font-semibold text-text-inverse">Subtle (Negative)</span>
+                    <div className="flex items-center justify-around p-3 bg-white/5 rounded-xl border border-white/10">
+                      <div className="text-center space-y-1">
+                        <IconButton variant="subtle" negative size="md" icon={X} aria-label="Close" />
+                        <span className="text-[10px] text-text-inverse-secondary block font-mono">Default</span>
+                      </div>
+                      <div className="text-center space-y-1">
+                        <IconButton variant="subtle" negative size="md" icon={X} disabled aria-label="Close disabled" />
+                        <span className="text-[10px] text-text-inverse-secondary block font-mono">Disabled</span>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -13,17 +13,42 @@ export const iconButtonVariants = cva(
         neutral:
           'bg-surface-accent-1-tertiary text-text-inverse hover:bg-surface-accent-1-tertiary-hover active:bg-surface-accent-1-tertiary-hover active:scale-[0.97] disabled:bg-surface-disabled disabled:text-text-disabled',
         subtle:
-          'bg-transparent text-text-neutral hover:bg-black/5 active:bg-black/10 active:scale-[0.97] disabled:bg-transparent disabled:text-text-disabled',
+          'bg-transparent text-text-neutral hover:bg-surface-hover active:bg-black/10 active:scale-[0.97] disabled:bg-transparent disabled:text-text-disabled',
       },
       size: {
         lg: 'size-14',
         md: 'size-12',
         sm: 'size-9',
       },
+      negative: {
+        true: '',
+        false: '',
+      },
     },
+    compoundVariants: [
+      {
+        variant: 'neutral',
+        negative: true,
+        className:
+          'bg-surface-neutral text-text-neutral hover:bg-surface-neutral-hover active:bg-surface-neutral-hover disabled:bg-surface-disabled disabled:text-text-disabled',
+      },
+      {
+        variant: 'subtle',
+        negative: true,
+        className:
+          'bg-transparent text-text-inverse hover:bg-surface-hover-inverse active:bg-white/10 disabled:bg-transparent disabled:text-text-disabled',
+      },
+      {
+        variant: 'primary',
+        negative: true,
+        className:
+          'bg-surface-brand text-text-on-brand hover:bg-surface-brand-hover active:bg-surface-brand-hover disabled:bg-surface-disabled disabled:text-text-disabled',
+      },
+    ],
     defaultVariants: {
       variant: 'primary',
       size: 'lg',
+      negative: false,
     },
   }
 );
@@ -57,6 +82,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       className,
       variant = 'primary',
       size = 'lg',
+      negative = false,
       type = 'button',
       icon: Icon,
       children,
@@ -74,7 +100,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         type={type}
         disabled={disabled}
         aria-label={ariaLabel}
-        className={cn(iconButtonVariants({ variant, size }), className)}
+        className={cn(iconButtonVariants({ variant, size, negative }), className)}
         {...props}
       >
         {Icon ? <Icon className={iconClass} aria-hidden="true" /> : children}
