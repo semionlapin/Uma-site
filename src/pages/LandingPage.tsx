@@ -106,58 +106,66 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       />
 
       {/* 2. HERO SECTION */}
-      <section className="w-full flex flex-col items-center justify-center py-16 md:py-24">
-        <div className="w-full max-w-page mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-center text-center gap-12">
-          {/* Promo Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-neutral shadow-xs">
-            <Sparkles className="size-4 text-surface-warning fill-surface-warning" />
-            <span className="font-heading font-normal text-xs sm:text-sm text-text-neutral">
-              {content.hero.badge}
-            </span>
-          </div>
+      <section className="w-full flex flex-col items-center justify-center pt-4 pb-6 sm:pb-8 lg:pb-12">
+        <div className="w-full max-w-page mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="w-full bg-surface-accent-1-tertiary rounded-card overflow-hidden pt-12 sm:pt-16 pb-12 flex flex-col items-center text-center">
+            {/* Promo / Heading / Description / CTA Block */}
+            <div className="flex flex-col items-center text-center gap-12 w-full max-w-4xl px-4 sm:px-6">
+              {/* Text Block: Promo + Headline + Subtitle (spacing-200 / 8px gap) */}
+              <div className="flex flex-col items-center gap-2 max-w-4xl">
+                {/* Promo Line */}
+                <div className="inline-flex items-center gap-2 text-text-inverse">
+                  <Sparkles className="size-5 text-surface-warning fill-surface-warning" />
+                  <span className="font-heading font-normal text-base text-text-inverse">
+                    {content.hero.badge}
+                  </span>
+                </div>
 
-          {/* Display Headline with exact tokens: Display/Hero and Body/P2 with spacing-200 (8px) gap */}
-          <div className="flex flex-col items-center gap-2 max-w-4xl">
-            <h1 className="text-display-hero text-text-neutral text-center">
-              {content.hero.title}
-              <span className="bg-surface-brand-subtle px-3 py-1 inline-block text-text-neutral">
-                {content.hero.titleHighlight}
-              </span>
-            </h1>
-            <p className="text-body-p2 text-text-neutral max-w-2xl text-center leading-6">
-              {content.hero.description}
-            </p>
-          </div>
+                {/* Display Headline */}
+                <h1 className="text-display-hero text-text-inverse text-center">
+                  {content.hero.title}
+                  {content.hero.titleHighlight}
+                </h1>
 
-          {/* Dual CTAs with helper caption */}
-          <div className="flex flex-col sm:flex-row items-start justify-center gap-3 w-full max-w-md sm:max-w-lg">
-            <div className="w-full sm:flex-1">
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full"
-                onClick={() => {}}
-              >
-                {content.hero.primaryCta}
-              </Button>
+                {/* Subtitle */}
+                <p className="text-body-p2 text-text-inverse-tertiary max-w-2xl text-center leading-6">
+                  {content.hero.description}
+                </p>
+              </div>
+
+              {/* Dual CTAs with helper caption */}
+              <div className="flex flex-col sm:flex-row items-start justify-center gap-3 w-full max-w-md sm:max-w-[500px]">
+                <div className="w-full sm:flex-1">
+                  <Button
+                    variant="primary"
+                    negative
+                    size="lg"
+                    className="w-full"
+                    onClick={() => {}}
+                  >
+                    {content.hero.primaryCta}
+                  </Button>
+                </div>
+                <div className="flex flex-col items-center w-full sm:flex-1 gap-2">
+                  <Button
+                    variant="subtle"
+                    negative
+                    size="lg"
+                    className="w-full"
+                    onClick={() => {}}
+                  >
+                    {content.hero.secondaryCta}
+                  </Button>
+                  <span className="text-body-p3 text-text-neutral-tertiary text-center">
+                    {content.hero.secondaryCtaCaption}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-center w-full sm:flex-1 gap-1.5">
-              <Button
-                variant="subtle"
-                size="lg"
-                className="w-full"
-                onClick={() => {}}
-              >
-                {content.hero.secondaryCta}
-              </Button>
-              <span className="text-body-p3 text-text-neutral-secondary text-center">
-                {content.hero.secondaryCtaCaption}
-              </span>
-            </div>
-          </div>
 
-          {/* 3D Infinite Dual Marquee (Step 4.2) */}
-          <HeroMarquee className="w-full mt-4" />
+            {/* 3D Infinite Dual Marquee (spacing-600 / 24px margin top) */}
+            <HeroMarquee className="w-full mt-6 bg-surface-accent-1-tertiary" />
+          </div>
         </div>
       </section>
 

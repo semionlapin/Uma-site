@@ -40,8 +40,8 @@ function createCardOffscreen(
 
   ctx.scale(dpr, dpr);
 
-  // 1. Draw outer card background (rounded-card-sm)
-  ctx.fillStyle = '#FFFFFF';
+  // 1. Draw outer card background (solid #83728B)
+  ctx.fillStyle = '#83728B';
   ctx.beginPath();
   if (typeof ctx.roundRect === 'function') {
     ctx.roundRect(0, 0, CARD_WIDTH, CARD_HEIGHT, CARD_RADIUS);
@@ -142,20 +142,27 @@ void main() {
     float mappedOffset = (foldStart * 0.5) + (t * (1.0 - foldStart) * 0.5 / perspectiveScale);
     sampleUv.x = 0.5 + (signU * mappedOffset);
 
-    // Opposing vertical curvature: top row curves down, bottom row curves up
+    // Smooth opposing vertical curvature: smooth continuous transition without step tear
     float yDist = vUv.y - 0.5;
-    float yCurve = sign(yDist) * pow(t, 2.0) * 0.038;
+    float yCurve = yDist * pow(t, 2.0) * 0.08;
     sampleUv.y = 0.5 + (yDist / perspectiveScale) - yCurve;
   }
 
-  // Transparent outside texture bounds
-  if (sampleUv.x < 0.0 || sampleUv.x > 1.0 || sampleUv.y < 0.0 || sampleUv.y > 1.0) {
+  // Discard/transparent outside safe texture sampling bounds to prevent edge clamping artifacts
+  if (sampleUv.x < 0.002 || sampleUv.x > 0.998 || sampleUv.y < 0.002 || sampleUv.y > 0.998) {
     fragColor = vec4(0.0);
     return;
   }
 
-  // True original card colors without in-shader tint or fade
-  fragColor = texture(u_texture, sampleUv);
+  vec4 color = texture(u_texture, sampleUv);
+
+  // Soft sub-pixel boundary feathering at the extreme outer edge
+  float edgeX = smoothstep(0.0, 0.004, sampleUv.x) * (1.0 - smoothstep(0.996, 1.0, sampleUv.x));
+  float edgeY = smoothstep(0.0, 0.004, sampleUv.y) * (1.0 - smoothstep(0.996, 1.0, sampleUv.y));
+  float alpha = color.a * edgeX * edgeY;
+
+  // Output premultiplied alpha so WebGL correctly blends translucent card frames over the dark background
+  fragColor = vec4(color.rgb * alpha, alpha);
 }
 `;
 
@@ -212,6 +219,7 @@ export const HeroMarquee: React.FC<HeroMarqueeProps> = ({
   // 1. Preload all 14 images and build offscreen textures
   React.useEffect(() => {
     let isCancelled = false;
+    offscreenCardsRef.current.clear();
     const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
     const allGames = [...HERO_GAMES_ROW_1, ...HERO_GAMES_ROW_2];
     let loadedCount = 0;
@@ -458,24 +466,24 @@ export const HeroMarquee: React.FC<HeroMarqueeProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        'w-full flex items-center justify-center overflow-hidden relative select-none',
+        'w-full flex items-center justify-center overflow-hidden relative select-none bg-surface-accent-1-tertiary',
         className
       )}
       {...props}
     >
-      {/* Clean HTML/CSS Lateral Edge Gradient Fade Overlays matching page background */}
+      {/* HTML/CSS Lateral Edge Gradient Fade Overlays covering the 3D cylinder fold region */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-r from-surface-base via-surface-base/80 to-transparent pointer-events-none z-10"
+        className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 lg:w-56 bg-gradient-to-r from-surface-accent-1-tertiary via-surface-accent-1-tertiary/70 to-transparent pointer-events-none z-10"
         aria-hidden="true"
       />
       <div
-        className="absolute right-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-l from-surface-base via-surface-base/80 to-transparent pointer-events-none z-10"
+        className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 lg:w-56 bg-gradient-to-l from-surface-accent-1-tertiary via-surface-accent-1-tertiary/70 to-transparent pointer-events-none z-10"
         aria-hidden="true"
       />
 
       <canvas
         ref={webglCanvasRef}
-        className="block max-w-full pointer-events-none"
+        className="block max-w-full pointer-events-none bg-surface-accent-1-tertiary"
         style={{ height: `${CANVAS_HEIGHT}px` }}
         aria-label="Интерактивная 3D карусель игровых механик"
         role="img"
