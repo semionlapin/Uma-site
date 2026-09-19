@@ -172,8 +172,8 @@ export const HeaderMenu = React.forwardRef<HTMLElement, HeaderMenuProps>(
       : isForcedTablet
       ? 'px-6 py-4'
       : isForcedDesktop
-      ? 'px-12 py-6'
-      : 'px-4 py-3 sm:px-6 sm:py-4 lg:px-12 lg:py-6';
+      ? 'px-8 py-6'
+      : 'px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-6';
 
     return (
       <header
@@ -187,7 +187,7 @@ export const HeaderMenu = React.forwardRef<HTMLElement, HeaderMenuProps>(
       >
         <div
           className={cn(
-            'max-w-page mx-auto flex items-center justify-between relative',
+            'max-w-[1440px] mx-auto flex items-center justify-between relative',
             containerPadding
           )}
         >

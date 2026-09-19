@@ -103,14 +103,14 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
     const isForcedMobile = breakpoint === 'Mobile';
     const isForcedCompact = isForcedTablet || isForcedMobile;
 
-    // Outer container padding matching Figma
+    // Outer container padding matching standard gutters
     const containerPadding = isForcedMobile
       ? 'p-8 sm:p-12'
       : isForcedTablet
       ? 'p-12'
       : isForcedDesktop
       ? 'p-12'
-      : 'px-4 py-10 sm:px-6 sm:py-12 lg:px-12 lg:py-12';
+      : 'px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-12';
 
     return (
       <footer
@@ -118,7 +118,7 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
         className={cn('w-full bg-surface-base text-text-neutral', className)}
         {...props}
       >
-        <div className={cn('max-w-page mx-auto', containerPadding)}>
+        <div className={cn('max-w-[1440px] mx-auto', containerPadding)}>
           {/* FORCED DESKTOP LAYOUT */}
           {isForcedDesktop && (
             <div className="flex items-center justify-between gap-8">

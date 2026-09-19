@@ -107,8 +107,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* 2. HERO SECTION */}
       <section className="w-full flex flex-col items-center justify-center pt-4 pb-6 sm:pb-8 lg:pb-12">
-        <div className="w-full max-w-page mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="w-full bg-surface-accent-1-tertiary rounded-card overflow-hidden pt-12 sm:pt-16 pb-12 flex flex-col items-center text-center">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full bg-surface-accent-1-tertiary rounded-card overflow-hidden pt-24 pb-12 flex flex-col items-center text-center">
             {/* Promo / Heading / Description / CTA Block */}
             <div className="flex flex-col items-center text-center gap-12 w-full max-w-4xl px-4 sm:px-6">
               {/* Text Block: Promo + Headline + Subtitle (spacing-200 / 8px gap) */}
@@ -171,7 +171,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* 3. KEY FEATURES SECTION ("Ключевые возможности") */}
       <section className="w-full py-16 md:py-24 bg-surface-base flex flex-col items-center">
-        <div className="w-full max-w-page mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-center gap-12 md:gap-16">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12 md:gap-16">
           {/* Section Header & Tabs with exact spacing-1200 (48px) gap */}
           <div className="flex flex-col items-center gap-12 w-full">
             <h2 className="text-h1 text-text-neutral text-center">
@@ -249,7 +249,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* 4. AUDIENCE SECTION ("Umaigra — это для всех") */}
       <section className="w-full py-16 md:py-24 bg-surface-base flex flex-col items-center">
-        <div className="w-full max-w-page mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-center gap-12 md:gap-16">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12 md:gap-16">
           {/* Section Header with Brand Logo Mark Glyph */}
           <div className="flex items-center justify-center gap-3 text-center flex-wrap">
             <span className="text-h1 text-text-neutral">
@@ -302,7 +302,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* 5. FAQ SECTION & PRE-FOOTER CTA (No divider borders) */}
       <section className="w-full py-16 md:py-24 bg-surface-base-hover flex flex-col items-center">
-        <div className="w-full max-w-page mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-center gap-12">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-12">
           {/* FAQ Title */}
           <div className="flex flex-col items-center text-center gap-2">
             <h2 className="text-h2 text-text-neutral">

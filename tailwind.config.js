@@ -279,8 +279,8 @@ export default {
         '4000': '160px',
       },
       maxWidth: {
-        'page': '1288px',
-        'content': '1192px',
+        'page': '1440px',
+        'content': '1440px',
         'narrow': '600px',
         'cta': '500px',
       },

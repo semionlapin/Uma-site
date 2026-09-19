@@ -368,8 +368,8 @@
     /* ----------------------------------------------------
        DIMENSIONAL TOKENS: CONTAINER CONSTRAINTS
        ---------------------------------------------------- */
-    --container-page:    1288px;
-    --container-content: 1192px;
+    --container-page:    1440px;
+    --container-content: 1440px;
     --container-narrow:  600px;
     --container-cta:     500px;
 
@@ -841,13 +841,13 @@
   --spacing-4000: 160px;
 
   /* Max Width Constraints */
-  --width-page: 1288px;
-  --width-content: 1192px;
+  --width-page: 1440px;
+  --width-content: 1440px;
   --width-narrow: 600px;
   --width-cta: 500px;
 
-  --container-page: 1288px;
-  --container-content: 1192px;
+  --container-page: 1440px;
+  --container-content: 1440px;
   --container-narrow: 600px;
   --container-cta: 500px;
 }
@@ -868,11 +868,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Explicit container width utility rules */
 .max-w-page {
-  max-width: 1288px !important;
+  max-width: 1440px !important;
 }
 
 .max-w-content {
-  max-width: 1192px !important;
+  max-width: 1440px !important;
 }
 
 .max-w-narrow {
