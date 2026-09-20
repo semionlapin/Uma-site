@@ -23,6 +23,10 @@ const SUBJECT_ITEMS = [
   { id: 'grammar', label: 'Grammar & Composition' },
   { id: 'cs', label: 'Computer Science' },
   { id: 'english', label: 'English' },
+  { id: 'environmental-science', label: 'Environmental Science' },
+  { id: 'foreign-languages', label: 'Foreign Languages' },
+  { id: 'music', label: 'Music' },
+  { id: 'pe', label: 'Physical Education' },
 ];
 
 export const FindGame01: React.FC<FindGame01Props> = ({
@@ -73,14 +77,14 @@ export const FindGame01: React.FC<FindGame01Props> = ({
                       'w-full px-3.5 py-2.5 rounded-full flex items-center gap-3 border transition-colors relative',
                       animate
                         ? 'findgame-target-row'
-                        : 'bg-[#DCF652]/25 border-surface-brand'
+                        : 'bg-[#DCF652]/30 border-[#9EBF00]'
                     )}
                   >
                     {/* Radio Button Indicator */}
                     <div className="size-[18px] rounded-full border border-[#DCDDDD] bg-white flex items-center justify-center shrink-0 overflow-hidden relative">
                       <div
                         className={cn(
-                          'size-[11px] rounded-full bg-[#A0C402]',
+                          'size-[11px] rounded-full bg-[#9EBF00]',
                           animate
                             ? 'findgame-radio-dot'
                             : 'opacity-100 scale-100'
@@ -88,7 +92,7 @@ export const FindGame01: React.FC<FindGame01Props> = ({
                       />
                     </div>
                     {/* Subject Label */}
-                    <span className="text-[12px] font-heading font-medium text-text-neutral truncate">
+                    <span className="text-[12px] font-heading font-normal text-text-neutral-secondary truncate">
                       {item.label}
                     </span>
                   </div>
@@ -112,7 +116,7 @@ export const FindGame01: React.FC<FindGame01Props> = ({
           {/* Animated Cursor Vector */}
           <div
             className={cn(
-              'absolute top-[82px] right-[52px] pointer-events-none z-20',
+              'absolute top-[40px] right-[48px] pointer-events-none z-20',
               animate && 'findgame-cursor-motion'
             )}
             aria-hidden="true"
@@ -137,116 +141,103 @@ export const FindGame01: React.FC<FindGame01Props> = ({
         </div>
       </div>
 
-      {/* Embedded GPU Keyframes matching exact Figma Motion Timeline (2.5s loop) */}
+      {/* Embedded GPU Keyframes matching exact Motion Timeline (4.5s loop) */}
       <style>{`
         @keyframes kf_list_scroll {
-          0% {
+          0%, 20% {
             transform: translateY(0px);
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
           }
-          16% {
-            animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
-            transform: translateY(0px);
-          }
-          48% {
-            transform: translateY(-76px);
+          45%, 92% {
+            transform: translateY(-120px);
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
           }
           100% {
-            transform: translateY(-76px);
+            transform: translateY(0px);
           }
         }
 
         @keyframes kf_cursor_translate {
-          0% {
+          0%, 20% {
             transform: translate(0px, 0px) scale(1);
           }
-          12% {
-            animation-timing-function: ease-in-out;
+          45% {
             transform: translate(0px, 0px) scale(1);
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
           }
-          32% {
-            transform: translate(-15px, 50px) scale(1);
+          62% {
+            transform: translate(-290px, 62px) scale(1);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
-          40% {
-            animation-timing-function: ease-in-out;
-            transform: translate(-15px, 50px) scale(1);
+          68% {
+            transform: translate(-290px, 62px) scale(0.72);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
-          60% {
-            transform: translate(-62px, 96px) scale(1);
-          }
-          65.2% {
-            animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
-            transform: translate(-62px, 96px) scale(0.65);
-          }
-          71.2% {
-            transform: translate(-62px, 96px) scale(1);
+          73%, 92% {
+            transform: translate(-290px, 62px) scale(1);
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
           }
           100% {
-            transform: translate(-62px, 96px) scale(1);
+            transform: translate(0px, 0px) scale(1);
           }
         }
 
         @keyframes kf_row_select {
-          0% {
+          0%, 62% {
             background-color: #F8F8F8;
             border-color: transparent;
             transform: scale(1);
           }
-          62% {
+          68% {
+            background-color: #F8F8F8;
+            border-color: transparent;
+            transform: scale(0.97);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          73%, 92% {
+            background-color: rgba(220, 246, 82, 0.32);
+            border-color: #9EBF00;
             transform: scale(1);
-          }
-          65.2% {
-            animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
-            transform: scale(0.98);
-          }
-          71.2% {
-            transform: scale(1);
-          }
-          74% {
-            background-color: rgba(220, 246, 82, 0.28);
-            border-color: #CDE83E;
           }
           100% {
-            background-color: rgba(220, 246, 82, 0.28);
-            border-color: #CDE83E;
+            background-color: #F8F8F8;
+            border-color: transparent;
+            transform: scale(1);
           }
         }
 
         @keyframes kf_radio_pop {
-          0% {
+          0%, 68% {
             opacity: 0;
             transform: scale(0);
           }
-          66% {
-            opacity: 0;
-            transform: scale(0);
-          }
-          74% {
+          73%, 92% {
             opacity: 1;
             transform: scale(1);
           }
           100% {
-            opacity: 1;
-            transform: scale(1);
+            opacity: 0;
+            transform: scale(0);
           }
         }
 
         .findgame-list-scroll {
-          animation: kf_list_scroll 2.5s infinite;
+          animation: kf_list_scroll 4.5s infinite;
           will-change: transform;
         }
 
         .findgame-cursor-motion {
-          animation: kf_cursor_translate 2.5s infinite;
+          animation: kf_cursor_translate 4.5s infinite;
           will-change: transform;
         }
 
         .findgame-target-row {
-          animation: kf_row_select 2.5s infinite;
+          animation: kf_row_select 4.5s infinite;
           will-change: transform, background-color, border-color;
         }
 
         .findgame-radio-dot {
-          animation: kf_radio_pop 2.5s infinite;
+          animation: kf_radio_pop 4.5s infinite;
           will-change: transform, opacity;
         }
 

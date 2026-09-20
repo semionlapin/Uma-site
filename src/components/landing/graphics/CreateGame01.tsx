@@ -64,20 +64,32 @@ export const CreateGame01: React.FC<CreateGame01Props> = ({
 
         {/* Browser Content Stage with 2x3 Grid Cards & Animated Cursor */}
         <div className="p-4 sm:p-5 relative flex-1 w-full overflow-hidden flex flex-col justify-center items-center bg-white">
-          <div className="w-full h-full flex-1 grid grid-cols-3 grid-rows-2 gap-2.5 sm:gap-3 relative">
+          <div
+            className={cn(
+              'w-full h-full flex-1 grid grid-cols-3 grid-rows-2 gap-2.5 sm:gap-3 relative transition-all duration-300',
+              animate && 'creategame01-grid-fade'
+            )}
+          >
             {[...MECHANIC_ROW_1, ...MECHANIC_ROW_2].map((item) => {
               if (item.isTarget) {
                 return (
                   <div
                     key={item.id}
                     className={cn(
-                      'rounded-[10px] p-3 flex items-center justify-center text-center border transition-all relative',
+                      'bg-[#F8F8F8] rounded-[10px] p-3 flex items-center justify-center text-center border border-transparent transition-all relative',
                       animate
                         ? 'creategame01-target-card'
-                        : 'bg-[#F6FDCF] border-[#CDE83E] ring-2 ring-[#CDE83E]/40'
+                        : 'bg-[#DCF652]/30 border-[#9EBF00]'
                     )}
                   >
-                    <span className="text-[12px] sm:text-[13px] font-heading font-normal text-text-neutral leading-snug select-none">
+                    <span
+                      className={cn(
+                        'text-[12px] sm:text-[13px] font-heading font-normal leading-snug select-none',
+                        animate
+                          ? 'creategame01-target-text'
+                          : 'text-text-neutral'
+                      )}
+                    >
                       {item.title}
                     </span>
                   </div>
@@ -97,10 +109,10 @@ export const CreateGame01: React.FC<CreateGame01Props> = ({
             })}
           </div>
 
-          {/* Animated Cursor Vector */}
+          {/* Animated Cursor Vector (Anchored directly to center-bottom target card) */}
           <div
             className={cn(
-              'absolute top-[52px] left-[130px] pointer-events-none z-20',
+              'absolute top-[75%] left-[50%] pointer-events-none z-20',
               animate && 'creategame01-cursor-motion'
             )}
             aria-hidden="true"
@@ -125,73 +137,119 @@ export const CreateGame01: React.FC<CreateGame01Props> = ({
         </div>
       </div>
 
-      {/* Embedded GPU Keyframes matching exact Figma Motion Timeline (2.5s loop) */}
+      {/* Embedded GPU Keyframes (4.8s Motion Sequence with Reading & Selection Pauses) */}
       <style>{`
-        @keyframes kf_creategame01_cursor {
+        /* Initial smooth fade-in of the mechanics cards */
+        @keyframes kf_creategame01_grid_fade {
           0% {
-            transform: translate(0px, 0px) scale(1);
+            opacity: 0;
+            transform: scale(0.98);
           }
-          15% {
-            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-            transform: translate(0px, 0px) scale(1);
-          }
-          50% {
-            transform: translate(100px, 130px) scale(1);
-          }
-          58% {
-            animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
-            transform: translate(100px, 130px) scale(0.7);
-          }
-          66% {
-            transform: translate(100px, 130px) scale(1);
-          }
-          88% {
-            transform: translate(100px, 130px) scale(1);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-
-        @keyframes kf_creategame01_card_select {
-          0%, 53.9% {
-            background-color: #F8F8F8;
-            border-color: transparent;
-            box-shadow: 0 0 0 0 rgba(205, 232, 62, 0);
+          12%, 88% {
+            opacity: 1;
             transform: scale(1);
-          }
-          58% {
-            animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
-            transform: scale(0.97);
-          }
-          66%, 88% {
-            transform: scale(1);
-            border-color: #CDE83E;
-            box-shadow: 0 0 0 2px rgba(205, 232, 62, 0.4);
-            background-color: #F6FDCF;
           }
           96%, 100% {
-            transform: scale(1);
-            border-color: transparent;
-            box-shadow: 0 0 0 0 rgba(205, 232, 62, 0);
-            background-color: #F8F8F8;
+            opacity: 0;
+            transform: scale(0.98);
           }
         }
 
+        /* Cursor resting, gliding to center card, click compression, and hold */
+        @keyframes kf_creategame01_cursor {
+          0%, 34% {
+            transform: translate(-130px, -95px) scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(0px, 0px) scale(1);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+          }
+          53% {
+            /* Click compression */
+            transform: translate(0px, 0px) scale(0.72);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+          }
+          56%, 88% {
+            /* Release and hold pause */
+            transform: translate(0px, 0px) scale(1);
+            opacity: 1;
+          }
+          96% {
+            transform: translate(-130px, -95px) scale(1);
+            opacity: 0;
+          }
+          100% {
+            transform: translate(-130px, -95px) scale(1);
+            opacity: 1;
+          }
+        }
+
+        /* Target card selection and click animation */
+        @keyframes kf_creategame01_card_select {
+          0%, 50% {
+            background-color: #F8F8F8;
+            border-color: transparent;
+            transform: scale(1);
+          }
+          53% {
+            background-color: #F8F8F8;
+            border-color: transparent;
+            transform: scale(0.97);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          56%, 88% {
+            background-color: rgba(220, 246, 82, 0.32);
+            border-color: #9EBF00;
+            transform: scale(1);
+          }
+          96%, 100% {
+            background-color: #F8F8F8;
+            border-color: transparent;
+            transform: scale(1);
+          }
+        }
+
+        /* Target card text color transition on selection */
+        @keyframes kf_creategame01_text_color {
+          0%, 50% {
+            color: var(--color-text-neutral-secondary, #83728B);
+          }
+          56%, 88% {
+            color: var(--color-text-neutral, #4C3659);
+          }
+          96%, 100% {
+            color: var(--color-text-neutral-secondary, #83728B);
+          }
+        }
+
+        .creategame01-grid-fade {
+          animation: kf_creategame01_grid_fade 4.8s ease-in-out infinite;
+          will-change: transform, opacity;
+        }
 
         .creategame01-cursor-motion {
-          animation: kf_creategame01_cursor 2.5s infinite;
-          will-change: transform;
+          animation: kf_creategame01_cursor 4.8s infinite;
+          will-change: transform, opacity;
         }
 
         .creategame01-target-card {
-          animation: kf_creategame01_card_select 2.5s infinite;
-          will-change: transform, border-color, box-shadow, background-color;
+          animation: kf_creategame01_card_select 4.8s infinite;
+          will-change: transform, border-color, background-color;
+        }
+
+        .creategame01-target-text {
+          animation: kf_creategame01_text_color 4.8s infinite;
+          will-change: color;
         }
 
         @media (prefers-reduced-motion: reduce) {
+          .creategame01-grid-fade,
           .creategame01-cursor-motion,
-          .creategame01-target-card {
+          .creategame01-target-card,
+          .creategame01-target-text {
             animation: none !important;
           }
         }

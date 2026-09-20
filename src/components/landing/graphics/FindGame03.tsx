@@ -85,14 +85,14 @@ export const FindGame03: React.FC<FindGame03Props> = ({
                 </span>
               </div>
 
-              {/* Share Button with Lime Border */}
+              {/* Share Button (Neutral Base, Animated Focus & Click) */}
               <div
                 className={cn(
-                  'h-8 px-4 rounded-full border border-[#CDE83E] bg-[#F2F2F2] flex items-center justify-center transition-all',
+                  'h-8 px-4 rounded-full border border-transparent bg-[#F2F2F2] flex items-center justify-center transition-all',
                   animate && 'findgame03-share-button'
                 )}
               >
-                <span className="font-heading font-medium text-xs text-text-neutral/70">
+                <span className="font-heading font-normal text-xs text-text-neutral/70">
                   Share
                 </span>
               </div>
@@ -116,22 +116,30 @@ export const FindGame03: React.FC<FindGame03Props> = ({
               animate ? 'findgame03-link-input-view' : 'hidden'
             )}
           >
-            <div className="w-full max-w-[390px] px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full border border-[#C4C4C4] bg-white shadow-md flex items-center gap-3">
+            <div className="w-full max-w-[390px] px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full border border-[#E5E5E5] bg-white shadow-md flex items-center gap-3">
               {/* Checkmark Circle Badge */}
-              <div className="size-9 sm:size-10 rounded-full bg-[#F6FDCF] border border-[#CDE83E] flex items-center justify-center shrink-0">
+              <div
+                className={cn(
+                  'size-9 sm:size-10 rounded-full flex items-center justify-center shrink-0 border transition-colors',
+                  animate
+                    ? 'findgame03-checkmark-badge'
+                    : 'bg-[#DCF652]/30 border-[#9EBF00]'
+                )}
+              >
                 <svg
-                  className={cn(
-                    'w-5 h-4 text-[#576501]',
-                    animate && 'findgame03-checkmark-svg'
-                  )}
-                  viewBox="0 0 29 23"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                 >
                   <path
-                    d="M9.55667 22.56L0 12.96L3.34483 9.6L9.55667 15.84L25.3252 0L28.67 3.36L9.55667 22.56Z"
-                    fill="#576501"
+                    d="M5 12.5L9.5 17L19 7.5"
+                    stroke="#576501"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={cn(animate && 'findgame03-checkmark-path')}
                   />
                 </svg>
               </div>
@@ -140,20 +148,13 @@ export const FindGame03: React.FC<FindGame03Props> = ({
               <span className="font-heading font-normal text-xs sm:text-sm text-text-neutral/80 truncate flex-1">
                 www.umaigra.com/mygame
               </span>
-
-              {/* Modal Action Share Button */}
-              <div className="h-8 px-4 bg-[#F2F2F2] rounded-full flex items-center justify-center shrink-0">
-                <span className="font-heading font-normal text-xs text-text-neutral/70">
-                  Share
-                </span>
-              </div>
             </div>
           </div>
 
-          {/* Animated Cursor Vector Pointer */}
+          {/* Animated Cursor Vector Pointer (Anchored to Share button with centered resting offset) */}
           <div
             className={cn(
-              'absolute top-[170px] left-[130px] pointer-events-none z-20',
+              'absolute top-[20px] right-[40px] pointer-events-none z-20',
               animate && 'findgame03-cursor-sequence'
             )}
             aria-hidden="true"
@@ -178,140 +179,185 @@ export const FindGame03: React.FC<FindGame03Props> = ({
         </div>
       </div>
 
-      {/* Embedded Pure CSS GPU Keyframes (Zero-Lag Click Response, 4.0s Sequence) */}
+      {/* Embedded Pure CSS GPU Keyframes (5.0s Motion Sequence with Extended Opening Showcase) */}
       <style>{`
-        /* STEP 1 & 2: Cursor movement from field to Share button, then click */
+        /* Cursor movement from center stage to Share button, click impact, hold pause, and fade */
         @keyframes kf_findgame03_cursor {
-          0% {
+          0%, 30% {
+            transform: translate(-215px, 78px) scale(1);
+            opacity: 1;
+          }
+          44% {
             transform: translate(0px, 0px) scale(1);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
           }
-          3% {
-            animation-timing-function: cubic-bezier(0.2, 1, 0.4, 1);
+          47% {
+            /* Click compression */
+            transform: translate(0px, 0px) scale(0.72);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+          }
+          50%, 57% {
+            /* Release and hold pause */
             transform: translate(0px, 0px) scale(1);
+            opacity: 1;
           }
-          20% {
-            /* Arrives directly over Share button */
-            transform: translate(250px, -145px) scale(1);
-          }
-          24% {
-            /* Click press down */
-            animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
-            transform: translate(250px, -145px) scale(0.85);
-          }
-          28% {
-            /* Click release */
-            transform: translate(250px, -145px) scale(1);
-          }
-          42% {
-            /* Glides to comfortable resting position */
-            transform: translate(175px, -60px) scale(1);
-          }
-          85% {
-            transform: translate(175px, -60px) scale(1);
+          58%, 92% {
+            transform: translate(0px, 0px) scale(1);
+            opacity: 0;
           }
           100% {
-            /* Returns to field start position */
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-
-        /* Share button immediate click feedback */
-        @keyframes kf_findgame03_share_btn_press {
-          0%, 21% {
-            transform: scale(1);
-            background-color: #F2F2F2;
-          }
-          24% {
-            transform: scale(0.92);
-            background-color: #E6F699;
-          }
-          28%, 100% {
-            transform: scale(1);
-            background-color: #F2F2F2;
-          }
-        }
-
-        /* STEP 3: Initial view disappears INSTANTLY on click (24%) */
-        @keyframes kf_findgame03_initial_view {
-          0%, 23.9% {
+            transform: translate(-215px, 78px) scale(1);
             opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
           }
-          24%, 85% {
+        }
+
+        /* Share button hover, focus, click compression, and extended hold pause */
+        @keyframes kf_findgame03_share_btn {
+          0%, 38% {
+            transform: scale(1);
+            background-color: #F2F2F2;
+            border-color: transparent;
+          }
+          42% {
+            /* Hover / Focus state */
+            transform: scale(1);
+            background-color: rgba(220, 246, 82, 0.2);
+            border-color: #9EBF00;
+          }
+          47% {
+            /* Click impact */
+            transform: scale(0.97);
+            background-color: rgba(220, 246, 82, 0.35);
+            border-color: #9EBF00;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          50%, 57% {
+            /* Hold highlighted clicked state */
+            transform: scale(1);
+            background-color: rgba(220, 246, 82, 0.32);
+            border-color: #9EBF00;
+          }
+          58%, 100% {
+            transform: scale(1);
+            background-color: #F2F2F2;
+            border-color: transparent;
+          }
+        }
+
+        /* Initial game screen smooth fade, extended hold, and transition out */
+        @keyframes kf_findgame03_initial_view {
+          0% {
             opacity: 0;
             transform: scale(0.98);
             pointer-events: none;
           }
-          92%, 100% {
+          10%, 57% {
             opacity: 1;
             transform: scale(1);
             pointer-events: auto;
           }
+          60%, 92% {
+            opacity: 0;
+            transform: scale(0.98);
+            pointer-events: none;
+          }
+          100% {
+            opacity: 0;
+            transform: scale(0.98);
+            pointer-events: none;
+          }
         }
 
-        /* STEP 3: Link input view appears INSTANTLY on click (24%) with zero delay */
+        /* Link input modal fades and scales in cleanly after View 1 hold */
         @keyframes kf_findgame03_link_input {
-          0%, 23.9% {
+          0%, 57% {
             opacity: 0;
             transform: scale(0.96);
             pointer-events: none;
           }
-          24%, 85% {
+          60%, 92% {
             opacity: 1;
-            transform: scale(1) translateY(0px);
+            transform: scale(1);
             pointer-events: auto;
           }
-          91%, 100% {
+          96%, 100% {
             opacity: 0;
             transform: scale(0.96);
             pointer-events: none;
           }
         }
 
-        /* STEP 4: Green checkmark pops in immediately without delay */
-        @keyframes kf_findgame03_checkmark {
-          0%, 23.9% {
+        /* Checkmark circle badge pop-and-settle into lime active state */
+        @keyframes kf_findgame03_checkmark_badge {
+          0%, 57% {
             opacity: 0;
             transform: scale(0);
+            background-color: #F2F2F2;
+            border-color: transparent;
           }
-          27% {
+          61% {
             opacity: 1;
-            transform: scale(1.22);
+            transform: scale(1.15);
+            background-color: rgba(220, 246, 82, 0.32);
+            border-color: #9EBF00;
           }
-          30%, 85% {
+          65%, 92% {
             opacity: 1;
             transform: scale(1);
+            background-color: rgba(220, 246, 82, 0.32);
+            border-color: #9EBF00;
           }
-          90%, 100% {
+          96%, 100% {
             opacity: 0;
             transform: scale(0);
+          }
+        }
+
+        /* Checkmark SVG stroke draw animation */
+        @keyframes kf_findgame03_checkmark_path {
+          0%, 58% {
+            stroke-dashoffset: 24;
+          }
+          68%, 92% {
+            stroke-dashoffset: 0;
+          }
+          96%, 100% {
+            stroke-dashoffset: 24;
           }
         }
 
         .findgame03-cursor-sequence {
-          animation: kf_findgame03_cursor 4.0s infinite;
-          will-change: transform;
+          animation: kf_findgame03_cursor 5.0s infinite;
+          will-change: transform, opacity;
         }
 
         .findgame03-share-button {
-          animation: kf_findgame03_share_btn_press 4.0s infinite;
-          will-change: transform, background-color;
+          animation: kf_findgame03_share_btn 5.0s infinite;
+          will-change: transform, background-color, border-color;
         }
 
         .findgame03-initial-view {
-          animation: kf_findgame03_initial_view 4.0s ease-in-out infinite;
+          animation: kf_findgame03_initial_view 5.0s ease-in-out infinite;
           will-change: transform, opacity;
         }
 
         .findgame03-link-input-view {
-          animation: kf_findgame03_link_input 4.0s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+          animation: kf_findgame03_link_input 5.0s cubic-bezier(0.25, 1, 0.5, 1) infinite;
           will-change: transform, opacity;
         }
 
-        .findgame03-checkmark-svg {
-          animation: kf_findgame03_checkmark 4.0s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-          will-change: transform, opacity;
+        .findgame03-checkmark-badge {
+          animation: kf_findgame03_checkmark_badge 5.0s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+          will-change: transform, opacity, background-color, border-color;
+        }
+
+        .findgame03-checkmark-path {
+          stroke-dasharray: 24;
+          stroke-dashoffset: 24;
+          animation: kf_findgame03_checkmark_path 5.0s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          will-change: stroke-dashoffset;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -319,7 +365,8 @@ export const FindGame03: React.FC<FindGame03Props> = ({
           .findgame03-share-button,
           .findgame03-initial-view,
           .findgame03-link-input-view,
-          .findgame03-checkmark-svg {
+          .findgame03-checkmark-badge,
+          .findgame03-checkmark-path {
             animation: none !important;
           }
         }

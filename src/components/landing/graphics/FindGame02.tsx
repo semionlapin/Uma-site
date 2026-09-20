@@ -138,18 +138,46 @@ export const FindGame02: React.FC<FindGame02Props> = ({
                     <div
                       key={item.id}
                       className={cn(
-                        'rounded-[10px] p-3 flex flex-col gap-2.5 border border-transparent transition-all duration-300 relative',
+                        'bg-[#F8F8F8] rounded-[10px] p-3 flex flex-col gap-2.5 border border-transparent transition-all duration-300 relative',
                         animate
                           ? 'findgame02-target-card'
-                          : 'bg-[#FFFFFF] border-[#CDE83E] ring-2 ring-[#CDE83E]/30 shadow-xs'
+                          : 'bg-[#DCF652]/30 border-[#9EBF00]'
                       )}
                     >
-                      <div className="size-11 sm:size-12 rounded-[8px] bg-[#F2F2F2] flex items-center justify-center text-text-neutral">
-                        <IconComponent className="size-5 text-text-neutral" />
+                      <div
+                        className={cn(
+                          'size-11 sm:size-12 rounded-[8px] bg-[#F2F2F2] flex items-center justify-center text-text-neutral-secondary/60',
+                          animate
+                            ? 'findgame02-target-icon-box'
+                            : 'bg-[#DCF652]/45'
+                        )}
+                      >
+                        <IconComponent
+                          className={cn(
+                            'size-5 text-text-neutral-secondary/60',
+                            animate
+                              ? 'findgame02-target-icon'
+                              : 'text-[#576501]'
+                          )}
+                        />
                       </div>
                       <div className="flex flex-col gap-1.5 w-full">
-                        <div className="h-2.5 sm:h-3 w-4/5 rounded-full bg-[#EAEAEA]" />
-                        <div className="h-2.5 sm:h-3 w-1/2 rounded-full bg-[#EAEAEA]" />
+                        <div
+                          className={cn(
+                            'h-2.5 sm:h-3 w-4/5 rounded-full bg-[#EAEAEA]',
+                            animate
+                              ? 'findgame02-target-bar-1'
+                              : 'bg-[#D3EE50]'
+                          )}
+                        />
+                        <div
+                          className={cn(
+                            'h-2.5 sm:h-3 w-1/2 rounded-full bg-[#EAEAEA]',
+                            animate
+                              ? 'findgame02-target-bar-2'
+                              : 'bg-[#E0F47A]'
+                          )}
+                        />
                       </div>
                     </div>
                   );
@@ -243,55 +271,48 @@ export const FindGame02: React.FC<FindGame02Props> = ({
         </div>
       </div>
 
-      {/* Embedded GPU Keyframes for Search-Scroll & Selection Sequence (3.6s loop) */}
+      {/* Embedded GPU Keyframes for Search-Scroll & Selection Sequence (4.5s loop) */}
       <style>{`
         /* View scrolls to center the target soccer card */
         @keyframes kf_findgame02_grid_scroll {
-          0% {
+          0%, 20% {
             transform: translateY(0px);
-          }
-          10% {
             animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-            transform: translateY(0px);
           }
-          44% {
+          42%, 90% {
             transform: translateY(-70px);
-          }
-          86% {
-            transform: translateY(-70px);
-          }
-          96%, 100% {
             animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+          }
+          100% {
             transform: translateY(0px);
           }
         }
 
         /* Cursor glides down as screen scrolls, clicks soccer card, then rests */
         @keyframes kf_findgame02_cursor {
-          0% {
+          0%, 20% {
             transform: translate(0px, 0px) scale(1);
           }
-          10% {
+          42% {
+            transform: translate(0px, 0px) scale(1);
             animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-            transform: translate(0px, 0px) scale(1);
           }
-          44% {
+          58% {
             /* Arrives directly over the centered target soccer card */
-            transform: translate(-104px, 72px) scale(1);
+            transform: translate(-215px, 50px) scale(1);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
-          48% {
-            /* Click press down */
-            animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
-            transform: translate(-104px, 72px) scale(0.68);
+          64% {
+            /* Click impact down */
+            transform: translate(-215px, 50px) scale(0.72);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
-          54% {
-            /* Click release */
-            transform: translate(-104px, 72px) scale(1);
+          70%, 90% {
+            /* Click release and hold */
+            transform: translate(-215px, 50px) scale(1);
+            animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
           }
-          86% {
-            transform: translate(-104px, 72px) scale(1);
-          }
-          96%, 100% {
+          100% {
             /* Returns to starting resting position */
             transform: translate(0px, 0px) scale(1);
           }
@@ -299,53 +320,120 @@ export const FindGame02: React.FC<FindGame02Props> = ({
 
         /* Target Soccer Card selection animation */
         @keyframes kf_findgame02_card_select {
-          0%, 47.9% {
+          0%, 58% {
             background-color: #F8F8F8;
-            border: 1px solid transparent;
-            box-shadow: 0 0 0 0 rgba(205, 232, 62, 0);
+            border-color: transparent;
+            transform: scale(1);
           }
-          48% {
+          64% {
+            background-color: #F8F8F8;
+            border-color: transparent;
             transform: scale(0.97);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
-          54% {
+          70%, 90% {
+            background-color: rgba(220, 246, 82, 0.32);
+            border-color: #9EBF00;
             transform: scale(1);
-            background-color: #FFFFFF;
-            border: 1px solid #CDE83E;
-            box-shadow: 0 0 0 2px rgba(205, 232, 62, 0.4);
           }
-          86% {
-            transform: scale(1);
-            background-color: #FFFFFF;
-            border: 1px solid #CDE83E;
-            box-shadow: 0 0 0 2px rgba(205, 232, 62, 0.4);
-          }
-          94%, 100% {
-            border: 1px solid transparent;
-            box-shadow: 0 0 0 0 rgba(205, 232, 62, 0);
+          100% {
             background-color: #F8F8F8;
+            border-color: transparent;
             transform: scale(1);
+          }
+        }
+
+        @keyframes kf_findgame02_icon_box {
+          0%, 64% {
+            background-color: #F2F2F2;
+          }
+          70%, 90% {
+            background-color: rgba(220, 246, 82, 0.45);
+          }
+          100% {
+            background-color: #F2F2F2;
+          }
+        }
+
+        @keyframes kf_findgame02_icon {
+          0%, 64% {
+            color: rgba(131, 114, 139, 0.6);
+          }
+          70%, 90% {
+            color: #576501;
+          }
+          100% {
+            color: rgba(131, 114, 139, 0.6);
+          }
+        }
+
+        @keyframes kf_findgame02_bar_1 {
+          0%, 64% {
+            background-color: #EAEAEA;
+          }
+          70%, 90% {
+            background-color: #D3EE50;
+          }
+          100% {
+            background-color: #EAEAEA;
+          }
+        }
+
+        @keyframes kf_findgame02_bar_2 {
+          0%, 64% {
+            background-color: #EAEAEA;
+          }
+          70%, 90% {
+            background-color: #E0F47A;
+          }
+          100% {
+            background-color: #EAEAEA;
           }
         }
 
         .findgame02-grid-scroll {
-          animation: kf_findgame02_grid_scroll 3.6s infinite;
+          animation: kf_findgame02_grid_scroll 4.5s infinite;
           will-change: transform;
         }
 
         .findgame02-cursor-motion {
-          animation: kf_findgame02_cursor 3.6s infinite;
+          animation: kf_findgame02_cursor 4.5s infinite;
           will-change: transform;
         }
 
         .findgame02-target-card {
-          animation: kf_findgame02_card_select 3.6s infinite;
-          will-change: transform, border-color, box-shadow, background-color;
+          animation: kf_findgame02_card_select 4.5s infinite;
+          will-change: transform, border-color, background-color;
+        }
+
+        .findgame02-target-icon-box {
+          animation: kf_findgame02_icon_box 4.5s infinite;
+          will-change: background-color;
+        }
+
+        .findgame02-target-icon {
+          animation: kf_findgame02_icon 4.5s infinite;
+          will-change: color;
+        }
+
+        .findgame02-target-bar-1 {
+          animation: kf_findgame02_bar_1 4.5s infinite;
+          will-change: background-color;
+        }
+
+        .findgame02-target-bar-2 {
+          animation: kf_findgame02_bar_2 4.5s infinite;
+          will-change: background-color;
         }
 
         @media (prefers-reduced-motion: reduce) {
           .findgame02-grid-scroll,
           .findgame02-cursor-motion,
-          .findgame02-target-card {
+          .findgame02-target-card,
+          .findgame02-target-icon-box,
+          .findgame02-target-icon,
+          .findgame02-target-bar-1,
+          .findgame02-target-bar-2 {
             animation: none !important;
           }
         }
